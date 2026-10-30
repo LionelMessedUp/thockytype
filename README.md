@@ -4,26 +4,9 @@ Tes mengetik bahasa Indonesia dengan **suara keyboard mechanical** yang disintes
 
 Tanpa file audio. Tanpa CDN. Tanpa build step. Tanpa internet.
 
-```
-C:\Users\HYPE AMD\thockytype\
-├─ index.html
-├─ css/style.css
-├─ js/words.js     # kamus kata + kutipan
-├─ js/sound.js     # mesin suara (Web Audio)
-└─ js/app.js       # mesin tes + UI
-```
 
-## Cara buka
 
-Klik dua kali `index.html`. Selesai.
 
-Kalau mau lewat server lokal (opsional):
-
-```powershell
-cd "C:\Users\HYPE AMD\thockytype"
-python -m http.server 5173
-# buka http://localhost:5173
-```
 
 ## Fitur
 
