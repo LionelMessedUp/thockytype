@@ -46,6 +46,7 @@ python -m http.server 5173
 - Spacebar punya suara lebih berat + *rattle stabilizer* (dua burst noise tambahan).
 - Enter punya bottom-out ganda, backspace sedikit lebih tinggi.
 - Ada **suara release** saat tombol dilepas, bukan cuma saat ditekan.
+- Menahan tombol tidak mengulang suara atau karakter; satu ketukan diputar per tekanan tombol.
 - Compressor di master chain supaya tetap punchy saat mengetik cepat.
 - Volume slider + tombol mute.
 

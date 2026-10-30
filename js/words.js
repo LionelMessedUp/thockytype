@@ -2,7 +2,7 @@
 (function (global) {
   'use strict';
 
-  // Kata-kata sehari-hari + istilah teknologi, tanpa duplikat.
+  // Kata-kata sehari-hari dengan sedikit istilah teknologi, tanpa duplikat.
   var WORDS = [
     // kata ganti & partikel
     'saya', 'aku', 'kamu', 'dia', 'kami', 'kita', 'mereka', 'anda',
@@ -55,18 +55,43 @@
     'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan',
     'sembilan', 'sepuluh', 'ribu', 'juta', 'persen', 'bagian', 'jumlah',
 
-    // teknologi
-    'komputer', 'jaringan', 'data', 'kode', 'sistem', 'program', 'server',
-    'internet', 'aplikasi', 'berkas', 'folder', 'sandi', 'kunci', 'token',
-    'server', 'basis', 'fungsi', 'variabel', 'perulangan', 'kondisi',
-    'algoritma', 'kompilasi', 'debug', 'render', 'cache', 'paket',
-    'protokol', 'alamat', 'port', 'klien', 'basisdata', 'antarmuka',
+    // kegiatan sehari-hari
+    'memasak', 'masak', 'mencuci', 'mandi', 'bermain', 'menonton',
+    'menunggu', 'membantu', 'menjaga', 'mengajak', 'membawa', 'membeli',
+    'menjual', 'memilih', 'mencari', 'menemukan', 'bertemu', 'berjalan',
+    'berlari', 'beristirahat', 'berkunjung', 'berkumpul', 'tersenyum',
+    'tertawa', 'menangis', 'bernyanyi', 'menari', 'berdoa', 'berharap',
+    'berusaha', 'berhasil', 'gagal', 'meminta', 'menjawab', 'bertanya',
+    'menjelaskan', 'bercerita', 'berbagi', 'menyimpan', 'membuka',
+    'menutup', 'menyiapkan', 'merapikan', 'membersihkan', 'menyapu',
+    'menyiram', 'membereskan', 'memasukkan', 'mengeluarkan',
 
-    // seputar mengetik
-    'ketukan', 'irama', 'ritme', 'kecepatan', 'akurasi', 'latihan',
-    'hasil', 'target', 'catatan', 'rekor', 'skor', 'grafik', 'waktu',
-    'kesalahan', 'konsisten', 'fokus', 'santai', 'nyaman', 'papan',
-    'mekanik', 'tombol', 'pegas', 'stabilizer', 'switch', 'keycap'
+    // makanan dan minuman
+    'nasi', 'roti', 'lauk', 'sayur', 'buah', 'ikan', 'ayam', 'telur',
+    'daging', 'susu', 'kopi', 'teh', 'air', 'gula', 'garam', 'minyak',
+    'sup', 'mi', 'kue', 'pisang', 'apel', 'jeruk', 'mangga', 'kelapa',
+    'jagung', 'kentang', 'cabai', 'bawang', 'tomat', 'wortel', 'sambal',
+    'sarapan', 'camilan', 'makanan', 'lapar', 'haus', 'kenyang',
+    'manis', 'asin', 'pahit', 'pedas', 'gurih', 'lezat', 'segar',
+
+    // keluarga, hewan, dan benda rumah
+    'keluarga', 'saudara', 'kakek', 'nenek', 'paman', 'bibi', 'sepupu',
+    'suami', 'istri', 'bayi', 'kucing', 'anjing', 'burung', 'sapi',
+    'kambing', 'ayam', 'bebek', 'kuda', 'kelinci', 'semut', 'lebah',
+    'piring', 'gelas', 'sendok', 'garpu', 'pisau', 'panci', 'kompor',
+    'baju', 'celana', 'sepatu', 'sandal', 'tas', 'dompet', 'uang',
+    'sabun', 'handuk', 'selimut', 'kasur', 'lemari', 'cermin', 'lampu',
+    'hadiah', 'foto', 'televisi',
+
+    // sifat dan suasana
+    'senang', 'sedih', 'marah', 'takut', 'gembira', 'kecewa', 'malu',
+    'bangga', 'lelah', 'sehat', 'sakit', 'lapang', 'sempit', 'dekat',
+    'jauh', 'kanan', 'kiri', 'depan', 'belakang', 'luar', 'dalam',
+    'ramah', 'jujur', 'sabar', 'peduli', 'sopan', 'hemat', 'boros',
+    'sibuk', 'lega', 'damai', 'hangat', 'lembut', 'lucu', 'indah',
+
+    // beberapa istilah teknologi yang umum
+    'komputer', 'internet', 'telepon', 'pesan', 'foto', 'video'
   ];
 
   // Kutipan pendek — dipakai mode "kutipan".

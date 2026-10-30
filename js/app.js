@@ -597,6 +597,11 @@
   function onKeyDown(e) {
     var k = e.key;
 
+    if (e.repeat && (k === 'Tab' || k === 'Escape')) {
+      e.preventDefault();
+      return;
+    }
+
     if (k === 'Tab') { e.preventDefault(); restart(); return; }
 
     if (k === 'Escape') {
@@ -609,6 +614,11 @@
     if (!dom.overlay.hidden) return;
 
     if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+    if (e.repeat) {
+      if (k === 'Backspace' || k === ' ' || k === 'Enter' || k.length === 1) e.preventDefault();
+      return;
+    }
 
     if (k === 'Backspace') { e.preventDefault(); handleBackspace(); return; }
     if (k === ' ') { e.preventDefault(); handleSpace(); return; }
