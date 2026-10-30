@@ -4,10 +4,9 @@ thockytype adalah situs web latihan mengetik bahasa Indonesia dengan pilihan sua
 
 ## Mulai latihan
 
-1. Buka folder situs thockytype di komputer.
-2. Klik dua kali `index.html` atau `buka.bat` untuk membuka halamannya di browser.
-3. Pilih mode latihan dan durasinya atau jumlah katanya.
-4. Mulai mengetik dengan keyboard. Waktu mulai berjalan saat kamu menekan tombol pertama.
+1. Buka https://lionelmessedup.github.io/thockytype/ di komputer.
+2. Pilih mode latihan dan durasinya atau jumlah katanya.
+3. Mulai mengetik dengan keyboard. Waktu mulai berjalan saat kamu menekan tombol pertama.
 
 Situs ini dibuka dan digunakan melalui browser. Tidak perlu memasang aplikasi, dan koneksi internet tidak diperlukan. Gunakan keyboard fisik untuk pengalaman terbaik.
 
