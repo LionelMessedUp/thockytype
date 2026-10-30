@@ -1,15 +1,15 @@
 # thockytype
 
-Latihan mengetik bahasa Indonesia dengan pilihan suara keyboard mechanical. Pilih latihan, mulai mengetik, lalu lihat hasil kecepatan dan akurasi kamu.
+thockytype adalah situs web latihan mengetik bahasa Indonesia dengan pilihan suara keyboard mechanical. Pilih latihan, mulai mengetik, lalu lihat kecepatan dan akurasi kamu.
 
 ## Mulai latihan
 
-1. Unduh atau salin folder thockytype ke komputer.
-2. Buka foldernya, lalu klik dua kali `buka.bat` atau `index.html`.
+1. Buka folder situs thockytype di komputer.
+2. Klik dua kali `index.html` atau `buka.bat` untuk membuka halamannya di browser.
 3. Pilih mode latihan dan durasinya atau jumlah katanya.
 4. Mulai mengetik dengan keyboard. Waktu mulai berjalan saat kamu menekan tombol pertama.
 
-Thockytype berjalan di browser dan tidak perlu memasang aplikasi tambahan atau terhubung ke internet. Gunakan keyboard fisik untuk pengalaman terbaik.
+Situs ini dibuka dan digunakan melalui browser. Tidak perlu memasang aplikasi, dan koneksi internet tidak diperlukan. Gunakan keyboard fisik untuk pengalaman terbaik.
 
 ## Pilih mode
 
