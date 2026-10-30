@@ -518,7 +518,7 @@
   // ------------------------------------------------------------------
   // input
   // ------------------------------------------------------------------
-  function handleChar(ch) {
+  function handleChar(ch, playKeySound) {
     if (state.finished) return;
     if (!state.started) startClock();
 
@@ -537,7 +537,7 @@
     updateHud();
     ensureWords();
 
-    playSound('char', panFor(ch));
+    if (playKeySound) playSound('char', panFor(ch));
     flashKey(ch.toLowerCase());
 
     // Kata terakhir sudah lengkap -> tes selesai tanpa perlu menekan spasi.
@@ -546,7 +546,7 @@
     }
   }
 
-  function handleSpace() {
+  function handleSpace(playKeySound) {
     if (state.finished || !state.started) return;
 
     var w = state.words[state.active];
@@ -554,7 +554,7 @@
 
     state.keys.ok++;
     state.active++;
-    playSound('space', 0);
+    if (playKeySound) playSound('space', 0);
     flashKey(' ');
 
     if (state.mode === 'time') {
@@ -571,7 +571,7 @@
     updateHud();
   }
 
-  function handleBackspace() {
+  function handleBackspace(playKeySound) {
     if (state.finished || !state.started) return;
 
     var w = state.words[state.active];
@@ -591,7 +591,7 @@
     paintWord(state.active);
     placeCaret();
     updateHud();
-    playSound('backspace', -0.2);
+    if (playKeySound) playSound('backspace', -0.2);
   }
 
   function onKeyDown(e) {
@@ -615,15 +615,11 @@
 
     if (e.ctrlKey || e.altKey || e.metaKey) return;
 
-    if (e.repeat) {
-      if (k === 'Backspace' || k === ' ' || k === 'Enter' || k.length === 1) e.preventDefault();
-      return;
-    }
-
-    if (k === 'Backspace') { e.preventDefault(); handleBackspace(); return; }
-    if (k === ' ') { e.preventDefault(); handleSpace(); return; }
-    if (k === 'Enter') { e.preventDefault(); handleSpace(); return; }
-    if (k.length === 1) { e.preventDefault(); handleChar(k); }
+    var playKeySound = !e.repeat;
+    if (k === 'Backspace') { e.preventDefault(); handleBackspace(playKeySound); return; }
+    if (k === ' ') { e.preventDefault(); handleSpace(playKeySound); return; }
+    if (k === 'Enter') { e.preventDefault(); handleSpace(playKeySound); return; }
+    if (k.length === 1) { e.preventDefault(); handleChar(k, playKeySound); }
   }
 
   function onKeyUp(e) {

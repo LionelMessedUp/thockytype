@@ -1,69 +1,43 @@
 # thockytype
 
-Tes mengetik bahasa Indonesia dengan **suara keyboard mechanical** yang disintesis langsung di browser.
+Latihan mengetik bahasa Indonesia dengan pilihan suara keyboard mechanical. Pilih latihan, mulai mengetik, lalu lihat hasil kecepatan dan akurasi kamu.
 
-Tanpa file audio. Tanpa CDN. Tanpa build step. Tanpa internet.
+## Mulai latihan
 
+1. Unduh atau salin folder thockytype ke komputer.
+2. Buka foldernya, lalu klik dua kali `buka.bat` atau `index.html`.
+3. Pilih mode latihan dan durasinya atau jumlah katanya.
+4. Mulai mengetik dengan keyboard. Waktu mulai berjalan saat kamu menekan tombol pertama.
 
+Thockytype berjalan di browser dan tidak perlu memasang aplikasi tambahan atau terhubung ke internet. Gunakan keyboard fisik untuk pengalaman terbaik.
 
+## Pilih mode
 
+- **Waktu** — ketik sebanyak mungkin sebelum waktunya habis. Pilih 15, 30, 60, atau 120 detik.
+- **Kata** — selesaikan 10, 25, 50, atau 100 kata.
+- **Kutipan** — salin kalimat yang ditampilkan, termasuk huruf besar dan tanda bacanya.
 
-## Fitur
+## Saat mengetik
 
-**Tes**
-- 3 mode: `waktu` (15/30/60/120 detik), `kata` (10/25/50/100), `kutipan` (kalimat Indonesia dengan tanda baca).
-- Karakter salah ditandai merah, huruf yang terlewat saat pindah kata ditandai garis bawah.
-- Kursor melompat per karakter, baris aktif otomatis scroll seperti monkeytype.
-- Backspace bisa mundur lintas kata (seperti editor biasa).
-- `<kbd>Tab</kbd>` ulangi tes, `<kbd>Esc</kbd>` mulai baru.
-- Rekor WPM tersimpan per mode di `localStorage`.
+- Huruf yang benar dan salah ditandai langsung di layar.
+- Gunakan **Backspace** untuk menghapus karakter. Kamu juga bisa kembali ke kata sebelumnya.
+- Menahan tombol akan terus mengetik karakter, tetapi suaranya hanya berbunyi sekali saat tombol pertama kali ditekan.
+- Tekan **Tab** untuk mengulang latihan atau **Esc** untuk memulai latihan baru.
 
-**Statistik**
-- WPM (kata benar), raw WPM (semua ketukan), akurasi per ketukan, konsistensi (standar deviasi), jumlah kesalahan, waktu, karakter benar.
-- Grafik WPM/raw per detik di layar hasil.
+## Atur suara
 
-**Suara (ini yang bikin beda)**
-- 5 profil karakter bunyi: `thock` (basah & rendah), `cream` (lembut), `clack` (tajam), `clicky` (dua klik), `linear` (halus tanpa klik).
-- Tiap ketukan punya randomisasi pitch, gain, dan decay → tidak pernah terdengar persis sama dua kali.
-- **Panning stereo per posisi tombol**: huruf di sisi kiri papan sedikit ke kiri, sisi kanan ke kanan.
-- Spacebar punya suara lebih berat + *rattle stabilizer* (dua burst noise tambahan).
-- Enter punya bottom-out ganda, backspace sedikit lebih tinggi.
-- Ada **suara release** saat tombol dilepas, bukan cuma saat ditekan.
-- Menahan tombol tidak mengulang suara atau karakter; satu ketukan diputar per tekanan tombol.
-- Compressor di master chain supaya tetap punchy saat mengetik cepat.
-- Volume slider + tombol mute.
+- Tekan tombol speaker untuk menyalakan atau mematikan suara.
+- Pilih karakter suara yang kamu suka: **thock** (lebih rendah), **cream** (lembut), **clack** (tajam), **clicky** (lebih berbunyi klik), atau **linear** (lebih halus).
+- Geser pengatur volume untuk mengecilkan atau membesarkan suara.
 
-**Visual**
-- Visualisasi papan keyboard yang menyala mengikuti tombol yang ditekan.
-- Pulsa bar kecil di header yang bereaksi tiap ketukan.
-- Tema gelap hangat, aksen amber.
+Suara dibuat langsung oleh browser. Jika suara belum terdengar, pastikan suara aktif dan volume tidak nol, lalu tekan tombol pada keyboard.
 
-## Bagaimana suaranya dibuat
+## Memahami hasil
 
-Bunyi keyboard mechanical asli = beberapa lapisan:
+- **Kata per menit (WPM)** — perkiraan jumlah kata benar yang kamu ketik per menit.
+- **Raw WPM** — kecepatan mengetik sebelum memperhitungkan kesalahan.
+- **Akurasi** — persentase ketukan yang benar.
+- **Konsistensi** — seberapa stabil kecepatan mengetikmu selama latihan.
+- **Kesalahan** dan **karakter benar** — ringkasan ketikanmu pada latihan tersebut.
 
-1. **Body** — osilator sine/triangle 76–150 Hz dengan decay cepat: ini bunyi "thock" di case.
-2. **Harmonik** — triangle di ~2× frekuensi body, gain kecil: tekstur plastik/kayu.
-3. **Click** — noise bandpass 1.7–4.7 kHz, Q tinggi, decay 10–30 ms: bunyi switch bottom-out.
-4. **Air** — noise highpass 4–8 kHz super pendek: "tink" di ujung bunyi.
-5. **Ekstra** — double click untuk profil clicky, rattle low-frequency untuk spacebar, bottom-out ganda untuk enter.
-
-Semua dibangun dari satu buffer white noise yang di-reuse, lewat `BiquadFilter` + envelope eksponensial. Tiap profil cuma menggeser frekuensi, Q, gain, dan decay — itu sebabnya 5 profil terasa seperti 5 switch berbeda.
-
-Kalau mau menambah profil: buka `js/sound.js`, tambahkan entri di objek `PROFILES`. Otomatis muncul di dropdown kalau `<option>`-nya ditambahkan di `index.html`.
-
-## Catatan
-
-- Terbaik di desktop dengan keyboard fisik (input mobile terbatas karena keydown dari keyboard virtual tidak seragam).
-- Suara butuh satu interaksi pertama (ketukan) untuk membuka `AudioContext` — itu batasan browser, bukan bug.
-- Huruf besar/kecil dihitung berbeda pada mode kutipan (perlu Shift).
-
-## Tweak cepat
-
-| Mau ubah | Di mana |
-|---|---|
-| Kata-kata | `js/words.js` → array `WORDS` |
-| Kutipan | `js/words.js` → array `QUOTES` |
-| Warna aksen | `css/style.css` → `--accent` / `--accent-2` |
-| Karakter suara | `js/sound.js` → `PROFILES` |
-| Font | `css/style.css` → `--mono` / `--sans` |
+Rekor terbaik disimpan di browser yang kamu gunakan. Menghapus data browser dapat menghapus rekor tersebut.
