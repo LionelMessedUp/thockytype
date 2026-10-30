@@ -372,15 +372,28 @@
   }
 
   function playSound(kind, pan) {
-    sound.play(kind, pan || 0);
+    // Suara tidak boleh pernah menghalangi input: kalau audio gagal,
+    // karakter tetap harus masuk seperti biasa.
+    try {
+      sound.play(kind, pan || 0);
+    } catch (e) { /* abaikan */ }
     hitPulse();
   }
 
-  function flashKey(label) {
-    var el = keyMap[label];
-    if (!el) return;
-    el.classList.add('down');
-    setTimeout(function () { el.classList.remove('down'); }, 110);
+  function keyLabel(k) {
+    return k === ' ' ? ' ' : String(k).toLowerCase();
+  }
+
+  // Keycap visual mengikuti tombol fisik (bukan timer): selama tombol
+  // ditahan keycap tetap turun, baru naik saat keyup.
+  function pressKeyVisual(k) {
+    var el = keyMap[keyLabel(k)];
+    if (el) el.classList.add('down');
+  }
+
+  function releaseKeyVisual(k) {
+    var el = keyMap[keyLabel(k)];
+    if (el) el.classList.remove('down');
   }
 
   // ------------------------------------------------------------------
@@ -517,8 +530,17 @@
 
   // ------------------------------------------------------------------
   // input
+  //
+  // Input dan suara dipisah total:
+  //  - handleChar/handleSpace/handleBackspace HANYA mengurus teks.
+  //  - Suara & animasi keycap diurus di onKeyDown/onKeyUp, sekali per
+  //    ketukan fisik. Auto-repeat dari OS tetap menghasilkan karakter,
+  //    tapi tidak menghasilkan bunyi baru — persis seperti keyboard
+  //    mechanical sungguhan yang cuma berbunyi saat switch ditekan.
   // ------------------------------------------------------------------
-  function handleChar(ch, playKeySound) {
+  var heldKeys = Object.create(null);
+
+  function handleChar(ch) {
     if (state.finished) return;
     if (!state.started) startClock();
 
@@ -537,16 +559,13 @@
     updateHud();
     ensureWords();
 
-    if (playKeySound) playSound('char', panFor(ch));
-    flashKey(ch.toLowerCase());
-
     // Kata terakhir sudah lengkap -> tes selesai tanpa perlu menekan spasi.
     if (state.mode !== 'time' && state.active === state.limit - 1 && w.typed === w.text) {
       setTimeout(finish, 140);
     }
   }
 
-  function handleSpace(playKeySound) {
+  function handleSpace() {
     if (state.finished || !state.started) return;
 
     var w = state.words[state.active];
@@ -554,8 +573,6 @@
 
     state.keys.ok++;
     state.active++;
-    if (playKeySound) playSound('space', 0);
-    flashKey(' ');
 
     if (state.mode === 'time') {
       ensureWords();
@@ -571,7 +588,7 @@
     updateHud();
   }
 
-  function handleBackspace(playKeySound) {
+  function handleBackspace() {
     if (state.finished || !state.started) return;
 
     var w = state.words[state.active];
@@ -591,46 +608,81 @@
     paintWord(state.active);
     placeCaret();
     updateHud();
-    if (playKeySound) playSound('backspace', -0.2);
+  }
+
+  // Satu ketukan fisik: bunyi + keycap turun.
+  function pressFeedback(k) {
+    var kind = 'char';
+    var pan = panFor(k);
+    if (k === ' ') { kind = 'space'; pan = 0; }
+    else if (k === 'Enter') { kind = 'enter'; pan = 0; }
+    else if (k === 'Backspace') { kind = 'backspace'; pan = -0.2; }
+
+    playSound(kind, pan);
+    pressKeyVisual(k);
   }
 
   function onKeyDown(e) {
     var k = e.key;
 
-    if (e.repeat && (k === 'Tab' || k === 'Escape')) {
+    // Tab / Esc: auto-repeat diabaikan supaya tidak restart berkali-kali.
+    if (k === 'Tab' || k === 'Escape') {
       e.preventDefault();
-      return;
-    }
-
-    if (k === 'Tab') { e.preventDefault(); restart(); return; }
-
-    if (k === 'Escape') {
-      e.preventDefault();
-      if (!dom.overlay.hidden) closeResults();
-      restart();
+      if (e.repeat) return;
+      if (k === 'Tab') {
+        restart();
+      } else {
+        if (!dom.overlay.hidden) closeResults();
+        restart();
+      }
       return;
     }
 
     if (!dom.overlay.hidden) return;
-
     if (e.ctrlKey || e.altKey || e.metaKey) return;
 
-    var playKeySound = !e.repeat;
-    if (k === 'Backspace') { e.preventDefault(); handleBackspace(playKeySound); return; }
-    if (k === ' ') { e.preventDefault(); handleSpace(playKeySound); return; }
-    if (k === 'Enter') { e.preventDefault(); handleSpace(playKeySound); return; }
-    if (k.length === 1) { e.preventDefault(); handleChar(k, playKeySound); }
+    var printable = k === ' ' || k === 'Backspace' || k === 'Enter' || k.length === 1;
+    if (!printable) return;
+    e.preventDefault();
+
+    // e.repeat = event auto-repeat dari OS (tombol masih ditahan).
+    // heldKeys jadi jaring pengaman kalau ada browser yang tidak set flag itu.
+    var fresh = !e.repeat && !heldKeys[k];
+    heldKeys[k] = true;
+
+    // Suara/animasi hanya untuk ketukan yang benar-benar memproses input.
+    if (fresh && !state.finished) pressFeedback(k);
+
+    if (k === 'Backspace') { handleBackspace(); return; }
+    if (k === ' ' || k === 'Enter') { handleSpace(); return; }
+    handleChar(k);
   }
 
   function onKeyUp(e) {
     var k = e.key;
-    if (k === 'Backspace' || k === 'Enter' || k === 'Tab' || k === 'Escape') return;
-    if (k !== ' ' && k.length !== 1) return;
-    if (dom.overlay.hidden === false) return;
-    if (state.finished) return;
+    if (!heldKeys[k]) return;   // tombol yang tidak pernah dicatat di halaman ini
+    delete heldKeys[k];
 
-    if (k === ' ') sound.play('release', 0);
-    else sound.play('release', panFor(k));
+    releaseKeyVisual(k);
+
+    if (k === 'Backspace' || k === 'Enter') return;
+    if (k.length !== 1) return;
+    if (dom.overlay.hidden === false) return;
+    if (state.finished || !state.started) return;
+
+    // Bunyi "switch naik" hanya kalau tombolnya benar-benar ditekan di sini.
+    try {
+      sound.play('release', k === ' ' ? 0 : panFor(k));
+    } catch (e) { /* abaikan */ }
+  }
+
+  // Kalau jendela kehilangan fokus saat tombol ditahan, keyup tidak akan
+  // pernah datang — bersihkan supaya keycap tidak nyangkut turun.
+  function clearHeldKeys() {
+    for (var k in heldKeys) {
+      releaseKeyVisual(k);
+      delete heldKeys[k];
+    }
   }
 
   // ------------------------------------------------------------------
@@ -929,6 +981,8 @@
 
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('keyup', onKeyUp);
+    window.addEventListener('blur', clearHeldKeys);
+    document.addEventListener('visibilitychange', clearHeldKeys);
 
     window.addEventListener('resize', function () {
       clearTimeout(window.__ttResize);
