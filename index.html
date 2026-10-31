@@ -7,6 +7,9 @@
 <title>thockytype — typing test bahasa indonesia</title>
 <meta name="description" content="Latihan mengetik bahasa Indonesia dengan suara keyboard mechanical yang digenerate langsung di browser. Tanpa file audio, tanpa internet." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='6' y='6' width='88' height='88' rx='20' fill='%23181b21' stroke='%23e9a75d' stroke-width='5'/><text x='50' y='72' font-size='58' font-family='monospace' fill='%23e9a75d' text-anchor='middle'>t</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fira+Code:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Inconsolata:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Roboto+Mono:wght@400;500&family=Space+Mono:wght@400;700&family=Source+Code+Pro:wght@400;500&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
@@ -43,16 +46,37 @@
       </select>
 
       <select id="fontSel" class="select" title="font area mengetik" aria-label="font area mengetik">
-        <option value="JetBrains Mono">JetBrains Mono</option>
-        <option value="Fira Code">Fira Code</option>
-        <option value="Source Code Pro">Source Code Pro</option>
-        <option value="Courier New">Courier New</option>
+        <optgroup label="Umum">
+          <option value="JetBrains Mono">JetBrains Mono</option>
+          <option value="Fira Code">Fira Code</option>
+          <option value="Source Code Pro">Source Code Pro</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Consolas">Consolas</option>
+          <option value="Cascadia Code">Cascadia Code</option>
+          <option value="Lucida Console">Lucida Console</option>
+          <option value="Menlo">Menlo</option>
+        </optgroup>
+        <optgroup label="Aesthetic">
+          <option value="Roboto Mono">Roboto Mono</option>
+          <option value="IBM Plex Mono">IBM Plex Mono</option>
+          <option value="Space Mono">Space Mono</option>
+          <option value="DM Mono">DM Mono</option>
+          <option value="Ubuntu Mono">Ubuntu Mono</option>
+          <option value="Inconsolata">Inconsolata</option>
+        </optgroup>
       </select>
 
       <select id="themeSel" class="select" title="tema warna" aria-label="tema warna">
-        <option value="dark">dark</option>
-        <option value="tokyo-night">Tokyo Night</option>
-        <option value="matrix">Matrix</option>
+        <optgroup label="Tema">
+          <option value="dark">dark</option>
+          <option value="tokyo-night">Tokyo Night</option>
+          <option value="matrix">Matrix</option>
+        </optgroup>
+        <optgroup label="Catppuccin">
+          <option value="catppuccin-mocha">Mocha</option>
+          <option value="catppuccin-macchiato">Macchiato</option>
+          <option value="catppuccin-frappe">Frappé</option>
+        </optgroup>
       </select>
 
       <input id="volume" class="range" type="range" min="0" max="1" step="0.01" value="0.55" title="volume" />

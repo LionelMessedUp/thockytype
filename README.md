@@ -30,8 +30,8 @@ Mode waktu dan kata menggunakan kamus kosakata bahasa Indonesia yang beragam, da
 - Tekan tombol speaker untuk menyalakan atau mematikan suara.
 - Pilih karakter suara yang kamu suka: **thock** (lebih rendah), **cream** (lembut), **clack** (tajam), **clicky** (lebih berbunyi klik), atau **linear** (lebih halus).
 - Geser pengatur volume untuk mengecilkan atau membesarkan suara.
-- Pilih font area mengetik: **JetBrains Mono**, **Fira Code**, **Source Code Pro**, atau **Courier New**. Pilihan font tersimpan di browser yang kamu gunakan.
-- Pilih tema **dark**, **Tokyo Night**, atau **Matrix** untuk mengubah palet warna antarmuka. Pilihan tema juga tersimpan di browser.
+- Pilih font area mengetik dari font umum seperti **Consolas** dan **Menlo**, atau font aesthetic seperti **Space Mono**, **DM Mono**, dan **IBM Plex Mono**. Pilihan font tersimpan di browser yang kamu gunakan. Font web perlu koneksi internet; saat offline, font sistem yang tersedia akan digunakan.
+- Pilih tema **dark**, **Tokyo Night**, **Matrix**, atau Catppuccin **Mocha**, **Macchiato**, dan **Frappé**. Pilihan tema tersimpan di browser.
 
 Suara dibuat langsung oleh browser. Jika suara belum terdengar, pastikan suara aktif dan volume tidak nol, lalu tekan tombol pada keyboard.
 

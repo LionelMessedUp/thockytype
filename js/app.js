@@ -8,8 +8,16 @@
   var WORDS = window.TT_WORDS || [];
   var QUOTES = window.TT_QUOTES || [];
   var MODES = ['time', 'words', 'quote'];
-  var FONT_OPTIONS = ['JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Courier New'];
-  var THEME_OPTIONS = ['dark', 'tokyo-night', 'matrix'];
+  var FONT_OPTIONS = [
+    'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Courier New',
+    'Consolas', 'Cascadia Code', 'Lucida Console', 'Menlo',
+    'Roboto Mono', 'IBM Plex Mono', 'Space Mono', 'DM Mono',
+    'Ubuntu Mono', 'Inconsolata'
+  ];
+  var THEME_OPTIONS = [
+    'dark', 'tokyo-night', 'matrix',
+    'catppuccin-mocha', 'catppuccin-macchiato', 'catppuccin-frappe'
+  ];
 
   var sound = new window.ThockEngine();
 
