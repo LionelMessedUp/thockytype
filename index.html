@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,7 +7,7 @@
 <title>thockytype — typing test bahasa indonesia</title>
 <meta name="description" content="Latihan mengetik bahasa Indonesia dengan suara keyboard mechanical yang digenerate langsung di browser. Tanpa file audio, tanpa internet." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='6' y='6' width='88' height='88' rx='20' fill='%23181b21' stroke='%23e9a75d' stroke-width='5'/><text x='50' y='72' font-size='58' font-family='monospace' fill='%23e9a75d' text-anchor='middle'>t</text></svg>" />
-<link rel="stylesheet" href="css/style.css?v=2" />
+<link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
 
@@ -40,6 +40,19 @@
         <option value="clack">clack</option>
         <option value="clicky">clicky</option>
         <option value="linear">linear</option>
+      </select>
+
+      <select id="fontSel" class="select" title="font area mengetik" aria-label="font area mengetik">
+        <option value="JetBrains Mono">JetBrains Mono</option>
+        <option value="Fira Code">Fira Code</option>
+        <option value="Source Code Pro">Source Code Pro</option>
+        <option value="Courier New">Courier New</option>
+      </select>
+
+      <select id="themeSel" class="select" title="tema warna" aria-label="tema warna">
+        <option value="dark">dark</option>
+        <option value="tokyo-night">Tokyo Night</option>
+        <option value="matrix">Matrix</option>
       </select>
 
       <input id="volume" class="range" type="range" min="0" max="1" step="0.01" value="0.55" title="volume" />
@@ -128,6 +141,6 @@
 
 <script src="js/words.js?v=3"></script>
 <script src="js/sound.js?v=2"></script>
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>

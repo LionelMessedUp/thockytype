@@ -8,6 +8,8 @@
   var WORDS = window.TT_WORDS || [];
   var QUOTES = window.TT_QUOTES || [];
   var MODES = ['time', 'words', 'quote'];
+  var FONT_OPTIONS = ['JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Courier New'];
+  var THEME_OPTIONS = ['dark', 'tokyo-night', 'matrix'];
 
   var sound = new window.ThockEngine();
 
@@ -27,6 +29,8 @@
     valueSeg: $('#valueSeg'),
     soundBtn: $('#soundBtn'),
     profileSel: $('#profileSel'),
+    fontSel: $('#fontSel'),
+    themeSel: $('#themeSel'),
     volume: $('#volume'),
     pulse: $('#pulse'),
     keyboard: $('#keyboard'),
@@ -51,7 +55,7 @@
   // ------------------------------------------------------------------
   // settings
   // ------------------------------------------------------------------
-  var DEFAULTS = { mode: 'time', duration: 30, wordCount: 25, sound: true, volume: 0.55, profile: 'thock' };
+  var DEFAULTS = { mode: 'time', duration: 30, wordCount: 25, sound: true, volume: 0.55, profile: 'thock', font: 'JetBrains Mono', theme: 'dark' };
 
   var settings = (function () {
     var base = {};
@@ -63,6 +67,8 @@
       }
     } catch (e) { /* ignore */ }
     if (MODES.indexOf(base.mode) < 0) base.mode = 'time';
+    if (FONT_OPTIONS.indexOf(base.font) < 0) base.font = DEFAULTS.font;
+    if (THEME_OPTIONS.indexOf(base.theme) < 0) base.theme = DEFAULTS.theme;
     return base;
   })();
 
@@ -798,12 +804,18 @@
     var plotH = h - pad.t - pad.b;
 
     var pts = (samples || []).filter(function (s) { return s && s.t > 0; });
+    var styles = getComputedStyle(document.documentElement);
+    var accent = styles.getPropertyValue('--accent').trim();
+    var accentRgb = styles.getPropertyValue('--accent-rgb').trim();
+    var chartMuted = styles.getPropertyValue('--chart-muted').trim();
+    var chartRaw = styles.getPropertyValue('--chart-raw').trim();
+    var chartGrid = styles.getPropertyValue('--chart-grid').trim();
 
     ctx.font = '10px ui-monospace, SFMono-Regular, Consolas, monospace';
     ctx.textBaseline = 'middle';
 
     if (pts.length === 0) {
-      ctx.fillStyle = '#3f4550';
+      ctx.fillStyle = chartMuted;
       ctx.fillText('belum cukup data untuk grafik', pad.l, h / 2);
       return;
     }
@@ -825,14 +837,14 @@
     for (var g = 0; g <= 4; g++) {
       var val = (maxV / 4) * g;
       var yy = Math.round(yOf(val)) + 0.5;
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      ctx.strokeStyle = chartGrid;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(pad.l, yy);
       ctx.lineTo(w - pad.r, yy);
       ctx.stroke();
 
-      ctx.fillStyle = '#454b55';
+      ctx.fillStyle = chartMuted;
       ctx.fillText(String(Math.round(val)), 6, yy);
     }
 
@@ -855,7 +867,7 @@
         ctx.closePath();
         var grad = ctx.createLinearGradient(0, pad.t, 0, h - pad.b);
         grad.addColorStop(0, fill);
-        grad.addColorStop(1, 'rgba(233,167,93,0)');
+        grad.addColorStop(1, 'rgba(' + accentRgb + ',0)');
         ctx.fillStyle = grad;
         ctx.fill();
         ctx.restore();
@@ -864,15 +876,15 @@
       }
     }
 
-    drawLine('raw', 'rgba(150,155,166,0.5)', 1.5, null);
-    drawLine('wpm', '#e9a75d', 2, 'rgba(233,167,93,0.22)');
+    drawLine('raw', chartRaw, 1.5, null);
+    drawLine('wpm', accent, 2, 'rgba(' + accentRgb + ',0.22)');
 
     // legend
-    ctx.fillStyle = '#6b717c';
+    ctx.fillStyle = chartMuted;
     ctx.fillText('wpm', w - pad.r - 62, pad.t - 2);
-    ctx.fillStyle = '#e9a75d';
+    ctx.fillStyle = accent;
     ctx.fillRect(w - pad.r - 74, pad.t - 5, 8, 2);
-    ctx.fillStyle = '#5a606a';
+    ctx.fillStyle = chartMuted;
     ctx.fillText('raw', w - pad.r - 20, pad.t - 2);
   }
 
@@ -885,8 +897,11 @@
       btns[i].classList.toggle('on', btns[i].getAttribute('data-mode') === settings.mode);
     }
     renderValues();
-
     dom.profileSel.value = settings.profile;
+    dom.fontSel.value = settings.font;
+    dom.wordsWrap.style.setProperty('--typing-font', '"' + settings.font + '", monospace');
+    dom.themeSel.value = settings.theme;
+    document.documentElement.setAttribute('data-theme', settings.theme);
     dom.volume.value = String(settings.volume);
     dom.soundBtn.setAttribute('aria-pressed', settings.sound ? 'true' : 'false');
     document.body.classList.toggle('muted', !settings.sound);
@@ -965,6 +980,21 @@
       persist();
     });
 
+    dom.fontSel.addEventListener('change', function () {
+      settings.font = FONT_OPTIONS.indexOf(dom.fontSel.value) >= 0 ? dom.fontSel.value : DEFAULTS.font;
+      persist();
+      syncConfig();
+      if (!state.finished) placeCaret();
+      else positionScrollOnly();
+    });
+
+    dom.themeSel.addEventListener('change', function () {
+      settings.theme = THEME_OPTIONS.indexOf(dom.themeSel.value) >= 0 ? dom.themeSel.value : DEFAULTS.theme;
+      persist();
+      syncConfig();
+      if (!dom.overlay.hidden) requestAnimationFrame(function () { drawChart(state.samples); });
+    });
+
     dom.volume.addEventListener('input', function () {
       settings.volume = parseFloat(dom.volume.value);
       sound.setVolume(settings.volume);
@@ -1006,7 +1036,6 @@
     sound.setProfile(settings.profile);
     sound.setVolume(settings.volume);
     sound.setEnabled(settings.sound);
-
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches && dom.hint) {
       dom.hint.textContent = 'tes ini butuh keyboard fisik';
     }

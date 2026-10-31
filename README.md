@@ -25,11 +25,13 @@ Mode waktu dan kata menggunakan kamus kosakata bahasa Indonesia yang beragam, da
 - Menahan tombol akan terus mengetik karakter, tetapi suaranya hanya berbunyi sekali saat tombol pertama kali ditekan.
 - Tekan **Tab** untuk mengulang latihan atau **Esc** untuk memulai latihan baru.
 
-## Atur suara
+## Atur suara, font, dan tema
 
 - Tekan tombol speaker untuk menyalakan atau mematikan suara.
 - Pilih karakter suara yang kamu suka: **thock** (lebih rendah), **cream** (lembut), **clack** (tajam), **clicky** (lebih berbunyi klik), atau **linear** (lebih halus).
 - Geser pengatur volume untuk mengecilkan atau membesarkan suara.
+- Pilih font area mengetik: **JetBrains Mono**, **Fira Code**, **Source Code Pro**, atau **Courier New**. Pilihan font tersimpan di browser yang kamu gunakan.
+- Pilih tema **dark**, **Tokyo Night**, atau **Matrix** untuk mengubah palet warna antarmuka. Pilihan tema juga tersimpan di browser.
 
 Suara dibuat langsung oleh browser. Jika suara belum terdengar, pastikan suara aktif dan volume tidak nol, lalu tekan tombol pada keyboard.
 
