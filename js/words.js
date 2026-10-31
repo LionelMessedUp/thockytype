@@ -90,8 +90,121 @@
     'ramah', 'jujur', 'sabar', 'peduli', 'sopan', 'hemat', 'boros',
     'sibuk', 'lega', 'damai', 'hangat', 'lembut', 'lucu', 'indah',
 
+    // tubuh, warna, dan bentuk
+    'kepala', 'rambut', 'wajah', 'mata', 'hidung', 'mulut', 'gigi',
+    'lidah', 'telinga', 'leher', 'bahu', 'tangan', 'jari', 'lengan',
+    'perut', 'punggung', 'lutut', 'kaki', 'kulit', 'darah', 'tulang',
+    'merah', 'biru', 'kuning', 'hijau', 'hitam', 'putih', 'cokelat',
+    'ungu', 'jingga', 'abu', 'emas', 'perak', 'bulat', 'kotak',
+    'lingkaran', 'garis', 'segitiga', 'permukaan', 'sudut', 'tepi',
+
+    // alam dan lingkungan
+    'pohon', 'daun', 'akar', 'ranting', 'bunga', 'rumput', 'batu',
+    'pasir', 'debu', 'ombak', 'danau', 'rawa', 'lembah', 'bukit',
+    'tebing', 'gua', 'pulau', 'teluk', 'selat', 'samudra', 'pesisir',
+    'kabut', 'petir', 'guntur', 'pelangi', 'embun', 'salju',
+    'badai', 'iklim', 'cuaca', 'musim', 'gempa', 'lava', 'bumi',
+    'planet', 'angkasa', 'galaksi', 'komet', 'orbit', 'serangga',
+    'kupu-kupu', 'nyamuk', 'lalat', 'kecoa', 'rusa', 'rubah',
+    'harimau', 'gajah', 'monyet', 'ular', 'kura-kura', 'katak',
+    'udang', 'kepiting', 'paus', 'lumba-lumba', 'elang', 'merpati',
+    'gagak',
+
+    // tempat dan perjalanan
+    'restoran', 'warung', 'perpustakaan', 'museum', 'apotek', 'terminal',
+    'stasiun', 'bandara', 'pelabuhan', 'halte', 'hotel', 'penginapan',
+    'terowongan', 'gedung', 'apartemen', 'pabrik', 'bengkel', 'lapangan',
+    'stadion', 'kolam', 'masjid', 'gereja', 'vihara', 'candi', 'kantin',
+    'toilet', 'alamat', 'tujuan', 'rute', 'arah', 'peta', 'perjalanan',
+    'liburan', 'tiket', 'koper', 'paspor', 'kendaraan', 'bus', 'angkot',
+    'taksi', 'truk', 'becak', 'perahu', 'kemudi', 'roda', 'mesin',
+    'bensin', 'macet', 'parkir', 'berangkat', 'tiba', 'singgah',
+    'menyeberang',
+
+    // benda sehari-hari
+    'rak', 'laci', 'atap', 'lantai', 'dinding', 'karpet', 'bantal',
+    'guling', 'ember', 'sapu', 'pel', 'spons', 'keran', 'kunci',
+    'gembok', 'gunting', 'jarum', 'benang', 'paku', 'palu', 'obeng',
+    'tang', 'tali', 'kardus', 'botol', 'kaleng', 'kotak', 'kantong',
+    'keranjang', 'koran', 'majalah', 'amplop', 'spidol', 'pensil',
+    'penghapus', 'penggaris', 'stiker', 'kacamata', 'topi', 'jaket',
+    'kaus', 'rok', 'kemeja', 'jas', 'sarung', 'payung', 'ponsel',
+    'laptop', 'tablet', 'kamera', 'mikrofon', 'kabel', 'baterai',
+    'charger', 'headset', 'tetikus',
+
+    // makanan dan masakan
+    'bubur', 'soto', 'rawon', 'rendang', 'gado-gado', 'ketoprak',
+    'pecel', 'sate', 'bakso', 'sosis', 'tempe', 'tahu', 'oncom',
+    'terasi', 'kecap', 'saus', 'merica', 'ketumbar', 'kunyit', 'jahe',
+    'lengkuas', 'serai', 'kemiri', 'seledri', 'bayam', 'kangkung', 'kol',
+    'sawi', 'mentimun', 'terung', 'labu', 'pepaya', 'nanas', 'semangka',
+    'melon', 'anggur', 'stroberi', 'durian', 'rambutan', 'salak', 'jambu',
+    'alpukat', 'lemon', 'madu', 'cokelat', 'biskuit', 'donat', 'puding',
+    'tepung', 'beras', 'keju', 'mentega', 'selai', 'rebus', 'goreng',
+    'panggang', 'kukus', 'potong', 'aduk', 'tuang', 'cicipi',
+
+    // kegiatan dan kata kerja
+    'berpikir', 'memahami', 'mengenal', 'mengerti', 'menyadari',
+    'memutuskan', 'merencanakan', 'mengatur', 'menggambar', 'melukis',
+    'memotret', 'merekam', 'mencetak', 'menyalakan', 'mematikan',
+    'mengisi', 'mengosongkan', 'memindahkan', 'mengangkat', 'menarik',
+    'mendorong', 'melempar', 'menangkap', 'memukul', 'menendang',
+    'melompat', 'berguling', 'menghindar', 'memegang', 'menggenggam',
+    'meletakkan', 'menaruh', 'mengantar', 'menjemput', 'meminjam',
+    'meminjamkan', 'membayar', 'menabung', 'membelanjakan', 'menyewa',
+    'memesan', 'menawarkan', 'menukar', 'mengumpulkan', 'membagikan',
+    'mengundang', 'mengunjungi', 'menemani', 'menolong', 'melindungi',
+    'merawat', 'mengobati', 'menyembuhkan', 'bernapas', 'bersepeda',
+    'mendaki', 'berkemah', 'berlatih', 'bertanding', 'menang', 'kalah',
+    'merayakan', 'tumbuh', 'berkembang', 'muncul', 'menghilang',
+    'terjadi',
+
+    // sifat dan suasana tambahan
+    'cerdas', 'pintar', 'bodoh', 'berani', 'gugup', 'gelisah', 'nyaman',
+    'aman', 'berbahaya', 'tajam', 'tumpul', 'licin', 'lengket', 'basah',
+    'kering', 'penuh', 'kosong', 'sempurna', 'sederhana', 'rumit',
+    'penting', 'berguna', 'sia-sia', 'mungkin', 'mustahil', 'terbuka',
+    'tertutup', 'longgar', 'ketat', 'dangkal', 'luas', 'tipis', 'tebal',
+    'ringan', 'berat', 'lunak', 'keras', 'manja', 'aktif', 'pasif',
+    'kreatif', 'teliti', 'ceroboh', 'santun', 'akrab', 'asing',
+    'berisik', 'hening', 'sunyi', 'nyaring', 'merdu', 'pudar', 'silau',
+    'sejuk', 'lembap', 'gerah', 'subur', 'gersang', 'mewah', 'kuno',
+    'modern', 'lokal', 'terkenal', 'rahasia', 'pribadi',
+
+    // waktu, bilangan, dan gagasan
+    'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'ahad',
+    'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli',
+    'agustus', 'september', 'oktober', 'november', 'desember',
+    'sebelum', 'sesudah', 'selama', 'ketika', 'sementara', 'akhirnya',
+    'pertama', 'kedua', 'ketiga', 'belas', 'puluh', 'ratus', 'miliar',
+    'setengah', 'separuh', 'sepasang', 'total', 'selisih', 'cerita',
+    'berita', 'bahasa', 'kalimat', 'kata', 'huruf', 'makna', 'ide',
+    'gagasan', 'rencana', 'alasan', 'jawaban', 'pertanyaan', 'pilihan',
+    'kesempatan', 'pengalaman', 'kenangan', 'kebiasaan', 'perubahan',
+    'kegiatan', 'pekerjaan', 'kehidupan', 'kesehatan', 'pendidikan',
+    'pengetahuan', 'keterampilan', 'aturan', 'masalah', 'solusi', 'hasil',
+    'proses', 'usaha', 'keberhasilan', 'kegagalan', 'harapan', 'impian',
+    'semangat', 'perhatian', 'pikiran',
+
+    // profesi, seni, dan olahraga
+    'perawat', 'koki', 'sopir', 'montir', 'polisi', 'tentara', 'hakim',
+    'pengacara', 'arsitek', 'insinyur', 'programmer', 'desainer',
+    'pelukis', 'musisi', 'penyanyi', 'aktor', 'aktris', 'fotografer',
+    'wartawan', 'ilmuwan', 'peneliti', 'penerjemah', 'kasir', 'satpam',
+    'karyawan', 'atasan', 'rekan', 'pelanggan', 'pasien', 'penumpang',
+    'olahraga', 'badminton', 'basket', 'voli', 'bulutangkis', 'tenis',
+    'catur', 'senam', 'bola', 'raket', 'gawang', 'pemain', 'pelatih',
+    'wasit', 'gol', 'latihan', 'musik', 'lagu', 'nada', 'irama', 'gitar',
+    'piano', 'drum', 'seruling', 'biola', 'panggung', 'tarian', 'lukisan',
+    'karya',
+
     // beberapa istilah teknologi yang umum
-    'komputer', 'internet', 'telepon', 'pesan', 'foto', 'video'
+    'komputer', 'internet', 'telepon', 'pesan', 'foto', 'video',
+    'aplikasi', 'perangkat', 'program', 'sistem', 'jaringan', 'situs',
+    'laman', 'peramban', 'data', 'berkas', 'folder', 'dokumen', 'sandi',
+    'akun', 'layanan', 'server', 'kode', 'tampilan', 'fitur', 'menu',
+    'ikon', 'tautan', 'unduhan', 'unggahan', 'memori', 'prosesor',
+    'digital', 'otomatis', 'online', 'luring', 'robot', 'satelit'
   ];
 
   // Kutipan pendek — dipakai mode "kutipan".

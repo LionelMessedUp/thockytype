@@ -16,6 +16,8 @@ Situs ini dibuka dan digunakan melalui browser. Tidak perlu memasang aplikasi, d
 - **Kata** — selesaikan 10, 25, 50, atau 100 kata.
 - **Kutipan** — salin kalimat yang ditampilkan, termasuk huruf besar dan tanda bacanya.
 
+Mode waktu dan kata menggunakan kamus kosakata bahasa Indonesia yang beragam, dari kata sehari-hari hingga alam, makanan, perjalanan, seni, olahraga, dan teknologi.
+
 ## Saat mengetik
 
 - Huruf yang benar dan salah ditandai langsung di layar.
